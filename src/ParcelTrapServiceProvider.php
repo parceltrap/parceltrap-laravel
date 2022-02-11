@@ -6,6 +6,7 @@ namespace ParcelTrap\Laravel;
 
 use InvalidArgumentException;
 use ParcelTrap\ParcelTrap;
+use ParcelTrap\ParcelTrap\Contracts\Driver;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -26,7 +27,8 @@ class ParcelTrapServiceProvider extends PackageServiceProvider
             return tap(ParcelTrap::make(), static function (ParcelTrap $client) use ($config) {
                 // @phpstan-ignore-next-line
                 collect($config['drivers'] ?? [])->each(
-                    function (array $driverConfig = null, string $driverName) use ($client) {
+                    /** @param array{driver: class-string<Driver>} $driverConfig */
+                    function (array $driverConfig, string $driverName) use ($client) {
                         if (! isset($driverConfig['driver']) || ! class_exists($driverConfig['driver'])) {
                             throw new InvalidArgumentException('A driver class must be specified in the configuration');
                         }
@@ -37,6 +39,8 @@ class ParcelTrapServiceProvider extends PackageServiceProvider
                         );
                     }
                 );
+
+                $client->setDefaultDriver($config['default'] ?? null);
             });
         });
     }
