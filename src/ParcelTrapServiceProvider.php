@@ -22,15 +22,20 @@ class ParcelTrapServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(ParcelTrap::class, function ($app) {
+            /** @param array{default: string, drivers: array<string, array<string, mixed>>} $config */
             $config = $app['config']['parceltrap'] ?? [];
 
             return tap(ParcelTrap::make(), static function (ParcelTrap $client) use ($config) {
+                if (! isset($config['default']) || $config['default'] === null) {
+                    throw new InvalidArgumentException('A default driver must be specified in the configuration');
+                }
+
                 // @phpstan-ignore-next-line
                 collect($config['drivers'] ?? [])->each(
                     /** @param array{driver: class-string<Driver>} $driverConfig */
                     function (array $driverConfig, string $driverName) use ($client) {
                         if (! isset($driverConfig['driver']) || ! class_exists($driverConfig['driver'])) {
-                            throw new InvalidArgumentException('A driver class must be specified in the configuration');
+                            throw new InvalidArgumentException('A valid driver class must be specified in the configuration');
                         }
 
                         $client->addDriver(
@@ -40,7 +45,7 @@ class ParcelTrapServiceProvider extends PackageServiceProvider
                     }
                 );
 
-                $client->setDefaultDriver($config['default'] ?? null);
+                $client->setDefaultDriver($config['default']);
             });
         });
     }
