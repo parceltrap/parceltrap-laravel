@@ -3,7 +3,28 @@
 declare(strict_types=1);
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default ParcelTrap Connection Name
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which of the ParcelTrap drivers below you wish
+    | to use as your default connection for all parcel work. Of course
+    | you may use many drivers at once using the ParcelTrap library.
+    |
+    */
+
     'default' => env('PARCELTRAP_DEFAULT'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | ParcelTrap Drivers
+    |--------------------------------------------------------------------------
+    |
+    | Here are each of the ParcelTrap drivers setup for your application.
+    |
+    */
 
     'drivers' => [
 
@@ -15,4 +36,5 @@ return [
         // ],
 
     ],
+
 ];
