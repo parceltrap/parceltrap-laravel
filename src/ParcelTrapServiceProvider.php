@@ -22,7 +22,7 @@ class ParcelTrapServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(ParcelTrap::class, function ($app) {
-            /** @param array{default: string, drivers: array<string, array<string, mixed>>} $config */
+            /** @var array{default: string, drivers: array<string, array<string, mixed>>} $config */
             $config = $app['config']['parceltrap'] ?? [];
 
             return tap(ParcelTrap::make(), static function (ParcelTrap $client) use ($config) {
