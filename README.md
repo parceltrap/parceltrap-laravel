@@ -17,12 +17,29 @@ Via Composer
 composer require parceltrap/parceltrap-laravel
 ```
 
+You can publish the configuration file with the following command:
+
+```shell
+php artisan vendor:publish --provider="ParcelTrap\Laravel\ParcelTrapServiceProvider"
+```
+
+You will need to configure a default driver, along with your ParcelTrap drivers in the [`config/parceltrap.php` file](https://github.com/parceltrap/parceltrap-laravel/blob/main/config/parceltrap.php).
+
 ## Usage
+
+Once your drivers have been configured, you can use ParcelTrap via the facade as follows:
 
 ```php
 use ParcelTrap\Laravel\Facades\ParcelTrap;
 
+// Using the default driver with the facade
+ParcelTrap::find('ABCDEFG12345');
+
+// Using a specific driver with the facade
 ParcelTrap::driver('royal_mail')->find('ABCDEFG12345');
+
+// Using via the container
+app(\ParcelTrap\ParcelTrap::class)->find('ABCDEFG12345');
 ```
 
 ## Change log
