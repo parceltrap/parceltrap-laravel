@@ -6,7 +6,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default ParcelTrap Connection Name
+    | Default ParcelTrap Driver Name
     |--------------------------------------------------------------------------
     |
     | Here you may specify which of the ParcelTrap drivers below you wish
