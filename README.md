@@ -22,7 +22,7 @@ composer require parceltrap/parceltrap-laravel
 ```php
 use ParcelTrap\Laravel\Facades\ParcelTrap;
 
-ParcelTrap::driver(RoyalMail::class)->find('ABCDEFG12345');
+ParcelTrap::driver('royal_mail')->find('ABCDEFG12345');
 ```
 
 ## Change log
