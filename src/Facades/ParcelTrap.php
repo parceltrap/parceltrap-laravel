@@ -7,7 +7,7 @@ namespace ParcelTrap\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 use ParcelTrap\ParcelTrap as ParcelTrapCore;
 
-/** @see ParcelTrapCore */
+/** @mixin ParcelTrapCore */
 class ParcelTrap extends Facade
 {
     protected static function getFacadeAccessor()
