@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('PARCELTRAP_DEFAULT'),
+    'default' => env('PARCELTRAP_DEFAULT_DRIVER'),
 
     /*
     |--------------------------------------------------------------------------
