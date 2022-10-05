@@ -9,6 +9,8 @@
 
 A package for integrating ParcelTrap in Laravel
 
+> **Note**: Please use the [main `parceltrap/parceltrap` package](https://github.com/parceltrap/parceltrap) instead.
+
 ## Install
 
 Via Composer
